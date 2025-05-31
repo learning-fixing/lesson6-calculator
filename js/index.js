@@ -1,24 +1,11 @@
-/*
-You should be able to click A) a button with a number, 
-then the B) plus sign, then a C) button with a number
-1. Create buttons in HTML with an ID (incl one with operator +)
-2. Link these buttons in JS with their ascribed value. e.g. 1,2,3.
-3. Have, when buttons are pressed store the value in a variable
-4. Have button + add variable of number value plus + and then wait for the next number button
-5. Display result of pressed buttons.
-
-I need help with:
-A) ascribe pressed button to a variable
-B) Have plus button converted into an operator
-C) Have storedNumberX plus with eachoter.
-D) Have the result being abled to add extra when + is pressed and the button value
-*/
+//number values
 let storedNumber1 = null
 let storedNumber2 = null
 let storedNumber3 = null
+let storednumber4 = null
 let operator = null
 
-//buttons
+//buttons and statements to execute when pressed
 const numberButton = document.querySelectorAll(".number-button");
 const resultRef = document.querySelector("#result")
 numberButton.forEach(function(button) {
@@ -35,15 +22,24 @@ numberButton.forEach(function(button) {
             storedNumber3 = Number(button.value)
             resultRef.textContent = Calculate(storedNumber1, storedNumber2, storedNumber3)
             console.log("You pressed: ", storedNumber1 + storedNumber2 + storedNumber3)
-        } console.log(storedNumber1, storedNumber2, storedNumber3)
+            //extra 4
+        } else if (storednumber4 === null) {
+            storednumber4 = Number(button.value)
+            resultRef.textContent = Calculate(storedNumber1, storedNumber2, storedNumber3, storednumber4)
+            console.log("You pressed: ", storedNumber1, storedNumber2, storedNumber3, storednumber4)
+        }
+        
+        console.log(storedNumber1, storedNumber2, storedNumber3, storednumber4)
     })
 })
+//amount of number buttons
+console.log("you have: ", numberButton.length, " number buttons")
 
-function Calculate(num1, num2, num3 = 0) {
+function Calculate(num1, num2, num3 = 0, num4 = 0) {
     if (operator === "+") {
-        return num1 + num2 + num3
+        return num1 + num2 + num3 + num4
     } else if (operator === "-") {
-        return num1 - num2 - num3
+        return num1 - num2 - num3 - num4
     }
 }
 const operatorButton = document.querySelector("#button-Plus")
@@ -56,15 +52,11 @@ clearButton.addEventListener("click", function() {
     storedNumber1 = null;
     storedNumber2 = null;
     storedNumber3 = null;
-    console.log(storedNumber1, storedNumber2, storedNumber3)
+    storednumber4 = null;
+    operator = null;
+    resultRef.textContent = "";
+    console.log(storedNumber1, storedNumber2, storedNumber3, storednumber4)
 })
 
 
-const buttonPlus = document.querySelector("#button-Plus")
-buttonPlus.addEventListener("click", function() {
-    console.log("You pressed: ", buttonPlus.value)
-})
 
-
-//result
-const resultDisplay = document.querySelector("#result")
